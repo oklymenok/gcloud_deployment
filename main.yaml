@@ -1,0 +1,17 @@
+imports:
+- path: network/public_net.jinja
+- path: network/service_net.jinja
+- path: network/internal_net.jinja
+- path: instance/compute.jinja 
+
+resources:
+- name: public-net
+  type: network/public_net.jinja
+  properties:
+    PUBLIC_NET: "172.16.0.0/24"
+    REGION: "us-west1"
+- name: compute-template
+  type: instance/compute.jinja
+  properties:
+    IMAGE_PROJECT: "centos-cloud"
+    IMAGE: "centos-7-v20170124"

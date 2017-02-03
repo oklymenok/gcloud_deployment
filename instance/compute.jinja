@@ -1,0 +1,19 @@
+resources:
+- name: compute-instance
+  type: compute.v1.instanceTemplate
+  properties:
+    properties:
+      machineType: f1-micro
+      disks:
+      - deviceName: BOOT
+        boot: true
+        autoDelete: true
+        mode: READ_WRITE
+        initializeParams:
+          sourceImage: https://www.googleapis.com/compute/v1/projects/{{ properties["IMAGE_PROJECT"] }}/global/images/{{ properties["IMAGE"] }}
+      networkInterfaces:
+      - accessConfigs:
+        - name: external-nat
+          type: ONE_TO_ONE_NAT
+        network: $(ref.public-net.selfLink)
+        subnetwork: $(ref.public-subnet.selfLink)

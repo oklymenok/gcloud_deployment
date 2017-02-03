@@ -1,0 +1,12 @@
+resources:
+- name: public-net
+  type: compute.v1.network
+  properties:
+    autoCreateSubnetworks: false
+
+- name: public-subnet
+  type: compute.v1.subnetwork
+  properties:
+    network: $(ref.public-net.selfLink)
+    ipCidrRange: {{ properties["PUBLIC_NET"] }}
+    region: {{ properties["REGION"] }}
