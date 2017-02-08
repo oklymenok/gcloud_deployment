@@ -2,7 +2,8 @@ imports:
 - path: network/public_net.jinja
 - path: network/service_net.jinja
 - path: network/internal_net.jinja
-- path: instance/compute.jinja 
+- path: instance_templates/compute.jinja 
+- path: instance_groups/compute.jinja
 
 resources:
 - name: public-net
@@ -11,7 +12,13 @@ resources:
     PUBLIC_NET: "172.16.0.0/24"
     REGION: "us-west1"
 - name: compute-template
-  type: instance/compute.jinja
+  type: instance_templates/compute.jinja
   properties:
     IMAGE_PROJECT: "centos-cloud"
     IMAGE: "centos-7-v20170124"
+- name: compute-instance-group
+  type: instance_groups/compute.jinja
+  properties:
+    TARGET_SIZE: 10
+    BASE_INSTANCE_NAME: "gcloud-compute"
+    ZONE: "us-west1-a"

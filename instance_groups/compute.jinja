@@ -1,0 +1,8 @@
+resources:
+- name: compute-instance-group
+  type: compute.v1.instanceGroupManager
+  properties:
+    zone: {{ properties["ZONE"] }}
+    targetSize: {{ properties["TARGET_SIZE"] }}
+    baseInstanceName: {{ properties["BASE_INSTANCE_NAME"] }}
+    instanceTemplate: $(ref.compute-instance.selfLink)
