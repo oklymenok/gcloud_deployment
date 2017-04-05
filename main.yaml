@@ -19,6 +19,6 @@ resources:
 - name: compute-instance-group
   type: instance_groups/compute.jinja
   properties:
-    TARGET_SIZE: 10
+    TARGET_SIZE: 5
     BASE_INSTANCE_NAME: "gcloud-compute"
     ZONE: "us-west1-a"

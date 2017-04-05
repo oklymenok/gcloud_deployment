@@ -10,3 +10,20 @@ resources:
     network: $(ref.public-net.selfLink)
     ipCidrRange: {{ properties["PUBLIC_NET"] }}
     region: {{ properties["REGION"] }}
+
+- name: public-net-ssh
+  type: compute.v1.firewall
+  properties:
+    network: $(ref.public-net.selfLink)
+    allowed:
+      - IPProtocol: TCP
+        ports: [22]
+    sourceRanges: [ 0.0.0.0/0 ]
+
+- name: public-net-icmp
+  type: compute.v1.firewall
+  properties:
+    network: $(ref.public-net.selfLink)
+    allowed:
+      - IPProtocol: ICMP
+    sourceRanges: [ 0.0.0.0/0 ]

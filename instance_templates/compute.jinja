@@ -17,3 +17,9 @@ resources:
           type: ONE_TO_ONE_NAT
         network: $(ref.public-net.selfLink)
         subnetwork: $(ref.public-subnet.selfLink)
+      metadata:
+        items:
+        - key: startup-script
+          value: |
+            #!/bin/bash
+            echo "test" > /root/test.file
